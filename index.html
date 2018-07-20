@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Audio Visualizer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <style>
+      html, body {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .commands {
+        display: inline-block;
+        font-size: 0;      
+        margin: 10px;
+        height: 40px;
+        text-align: left;
+        background-color: #2f2f2f;
+        border-radius: 2px;
+      }
+
+      label {
+        vertical-align: top;
+        width: 260px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 600px;
+        padding-left: 15px;
+        line-height: 40px;
+        box-sizing: border-box;
+        display: inline-block;
+        background-color: #222;
+        border-radius: 2px 0 0 2px;
+        cursor: pointer;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        font-size: 0;
+        margin: 0;
+        padding: 0;
+        color: white;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        box-sizing: border-box;
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        vertical-align: top;
+      }
+
+      .commands p {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 40px;
+        height: 40px;
+        margin: 0;
+        padding-right: 30px;
+        font-size: 15px;
+        position: relative;
+      }
+
+      .commands p input {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      img {
+        height: 40px;
+        width: 40px;
+      }
+
+      audio {
+        display: none;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      canvas {
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="commands">
+      <label for="file-audio">Select a song (FLAC is good)</label>
+      <input type="file" id="file-audio"/>
+      <button><img src="play.png" /></button>
+      <p>Spiral Mode <input type="checkbox" id="spiralMode"/></p>
+    </div>
+    <div class="title"></div>
+    <audio crossOrigin="anonymous" controls>
+    </audio>
+    <canvas></canvas>
+    <script src="appAudio.js"></script>
+  </body>
+</html>

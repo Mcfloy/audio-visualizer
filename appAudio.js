@@ -23,23 +23,25 @@ const INDIGO_COLOR = "rgb(75, 0, 130)";
 const FLASHY_COLORS = [ORANGE_COLOR, INDIGO_COLOR, RED_COLOR];
 
 const START_POS = -Math.PI / 2;
-const SLOW_FACTOR = [0.09, 0.05, 0.13, 0.14, 0.10, 0.14, 0.11, 0.08];
+const SLOW_FACTOR = [0.135, 0.13, 0.12, 0.12, 0.11, 0.10, 0.09, 0.08];
 
 let pos = [];
 let FTT_SIZE;
 let dataArray;
-let bassBoost = 0.3;
+let bassBoost = 0.25;
 
 if (HEIGHT > 1200)
-    FTT_SIZE = 4096;
+    FTT_SIZE = 16384;
+else if (HEIGHT > 1000)
+    FTT_SIZE = 8192;
 else if (HEIGHT > 800)
-    FTT_SIZE = 2048;
+    FTT_SIZE = 4096;
 else if (HEIGHT > 600)
+    FTT_SIZE = 2048;
+else if (HEIGHT > 400)
     FTT_SIZE = 1024;
-else if (HEIGHT > 300)
-    FTT_SIZE = 512;
 else
-    FTT_SIZE = 256;
+    FTT_SIZE = 512;
 
 let stormMode = false;
 
@@ -138,14 +140,14 @@ function visualize() {
                 const maxFrequency = Math.floor(FTT_SIZE / 100 * 2.25);
                 if (i <= maxFrequency && !skipCheck) {
                     if (l >= 252) {
-                        bassBoost = 1.05;
+                        bassBoost = 0.75;
                         skipCheck = true;
                     } else {
-                        bassBoost = 0.3;
+                        bassBoost = 0.25;
                     }
                 }
                 pos[i] = (pos[i] + (l * SLOW_FACTOR[index] * bassBoost) / 720) % (2 * Math.PI);
-                if (bassBoost >= 1) {
+                if (bassBoost > 0.25) {
                     canvasCtx.lineWidth = Math.floor(Math.random() * 3) + 1;
                     if (i % 2) {
                         canvasCtx.strokeStyle = WHITE_COLOR;
